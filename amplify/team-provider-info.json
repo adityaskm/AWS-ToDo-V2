@@ -19,9 +19,6 @@
                     "EMAILMESSAGE": "Verify your Email for Awesome TOdo App"
                 }
             },
-            "auth": {
-                "awstodov27fdd4a0b": {}
-            },
             "hosting": {
                 "amplifyhosting": {
                     "appId": "d3c7rb4j5tes5c",
