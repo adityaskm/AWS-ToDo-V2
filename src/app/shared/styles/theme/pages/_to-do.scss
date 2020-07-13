@@ -1,0 +1,113 @@
+.to-do-page {
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  //flex-direction: column;
+  //height: 100vh;
+  overflow: auto;
+
+  .to-do-title {
+    background-color: $blue-muted;
+    color: $primary-color;
+  }
+
+  .to-do-card {
+    border-radius: 1.5rem;
+    //box-shadow: 0 0 4px 4px $gray-200;
+    padding: 1rem 0;
+    overflow: hidden;
+  }
+
+  .mat-form-field.to-do-item-title-mat-form-field {
+    width: calc(100% - 4rem - 72px);
+  }
+
+  .to-do-item {
+    &-action {
+      vertical-align: middle;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: color 0.5s ease;
+
+      &-complete {
+        &-active {
+          color: $primary-color;
+
+          &:hover {
+            color: $pink;
+          }
+        }
+
+        &-inactive {
+          color: $gray-400;
+
+          &:hover {
+            color: lighten($primary-color, 20%);
+          }
+        }
+      }
+
+      &-inprogress {
+        &-active {
+          color: $yellow;
+
+          &:hover {
+            color: $pink;
+          }
+        }
+
+        &-inactive {
+          color: $gray-400;
+
+          &:hover {
+            color: lighten($yellow, 20%);
+          }
+        }
+      }
+
+      &-edit,
+      &-save {
+        margin-top: 6px;
+        cursor: pointer;
+        color: $gray-500;
+
+        &:hover {
+          color: $gray-800;
+        }
+      }
+      &-delete {
+        margin-top: 6px;
+        cursor: pointer;
+        color: $gray-500;
+        &:hover {
+          color: rgb(231, 38, 112);
+        }
+      }
+    }
+
+    &-title,
+    &-subtitle {
+      width: calc(100% - 4rem - 112px);
+      vertical-align: middle;
+      margin: 0 0.5rem;
+      border: 2px solid transparent;
+      transition: border-color 0.5s ease;
+      padding: 4px 0.5rem;
+      border-radius: 5px;
+      outline: none !important;
+      &-editing {
+        border-color: $primary-color;
+      }
+      &-inprogress {
+        font-weight: 700;
+      }
+      &-completed {
+        text-decoration: line-through;
+      }
+    }
+    &-subtitle {
+      margin: 0.5em 80px 0.5px 88px;
+      color: $gray-700;
+    }
+  }
+}

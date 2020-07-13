@@ -1,1 +1,38 @@
-<p>to-do works!</p>
+<div class="to-do-page">
+  <div class="to-do-title">
+    <h3 class="text-primary p-3">
+      To Do List
+
+      <button mat-button class="text-small-50 float-right" (click)="logout()">
+        Logout
+        <mat-icon class="ml-1 align-middle text-100 pt-1">
+          open_in_new
+        </mat-icon>
+      </button>
+    </h3>
+  </div>
+  <div class="container">
+    <div class="p-1">
+      <button
+        mat-mini-fab
+        color="primary"
+        class="float-right mt-2 outline-none"
+        (click)="addToDo()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <h5 class="mt-4 mb-2 text-muted">
+        Your Agenda
+      </h5>
+    </div>
+    <ul class="to-do-list list-group list-group-flush">
+      <li
+        class="list-group-item"
+        (toDoItemDelete)="removeToDo(toDoItemIndex)"
+        [toDoItem]="toDoItem"
+        *ngFor="let toDoItem of todoList; let toDoItemIndex = index"
+        app-to-do-item
+      ></li>
+    </ul>
+  </div>
+</div>

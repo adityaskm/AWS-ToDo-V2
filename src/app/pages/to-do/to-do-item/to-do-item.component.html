@@ -1,0 +1,77 @@
+<div class="to-do-item">
+  <div>
+    <mat-icon
+      matRipple
+      matTooltip="Complete"
+      class="to-do-item-action to-do-item-action-complete"
+      [ngClass]="{
+        'to-do-item-action-complete-active': toDoItem.status === 2,
+        'to-do-item-action-complete-inactive': toDoItem.status !== 2
+      }"
+      (click)="toDoItem.status = 2"
+    >
+      done_outline
+    </mat-icon>
+    <mat-icon
+      matRipple
+      matTooltip="In Progress"
+      class="to-do-item-action to-do-item-action-inprogress"
+      [ngClass]="{
+        'to-do-item-action-inprogress-active': toDoItem.status === 1,
+        'to-do-item-action-inprogress-inactive': toDoItem.status !== 1
+      }"
+      (click)="toDoItem.status = 1"
+    >
+      schedule
+    </mat-icon>
+    <input
+      #toDoTitleInput
+      type="text"
+      class="to-do-item-title"
+      [ngClass]="{
+        'to-do-item-title-completed': toDoItem.status === 2,
+        'to-do-item-title-inprogress': toDoItem.status === 1
+      }"
+      placeholder="What do you want to do?"
+      [(ngModel)]="toDoItemTempTitle"
+      (focus)="editToDoComponent(toDoTitleInput)"
+      (blur)="saveToDo()"
+    />
+    <mat-icon
+      class="float-right to-do-item-action to-do-item-action-delete"
+      matTooltip="Delete"
+      (click)="deleteToDo()"
+    >
+      delete
+    </mat-icon>
+    <mat-icon
+      class="float-right to-do-item-action to-do-item-action-edit"
+      (click)="editToDo()"
+      matTooltip="Edit"
+      *ngIf="!toDoItem.editing"
+      >edit</mat-icon
+    >
+    <mat-icon
+      class="float-right to-do-item-action to-do-item-action-save"
+      matTooltip="Save"
+      *ngIf="toDoItem.editing"
+      >save</mat-icon
+    >
+  </div>
+  <div>
+    <textarea
+      #toDoSubTitleInput
+      appAutoResize
+      rows="1"
+      class="to-do-item-subtitle"
+      [ngClass]="{
+        'to-do-item-subtitle-completed': toDoItem.status === 2,
+        'to-do-item-subtitle-inprogress': toDoItem.status === 1
+      }"
+      [(ngModel)]="toDoItem.subtitle"
+      placeholder="Describe this task"
+      (focus)="editToDoComponent(toDoSubTitleInput)"
+      (blur)="saveToDo()"
+    ></textarea>
+  </div>
+</div>

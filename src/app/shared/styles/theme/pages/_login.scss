@@ -1,0 +1,15 @@
+.login-page {
+  //background-image: linear-gradient(180deg, #fff 0, #fff 50%, $primary-color 50%, $primary-color 100%) !important;
+  height: 100vh;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+
+  .login-card {
+    max-width: 400px;
+    width: 100%;
+  }
+}

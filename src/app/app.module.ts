@@ -8,13 +8,14 @@ import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Configure Amplify resources */
 Amplify.configure(awsconfig);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AmplifyUIAngularModule],
+  imports: [BrowserModule, AppRoutingModule, AmplifyUIAngularModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
