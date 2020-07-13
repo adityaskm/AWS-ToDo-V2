@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonObjectsService } from './common-objects.service';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,16 @@ export class HttpService {
   ) {}
 
   post<T>(url: string, postparams: any, includeToken = true) {
-    return this.http.post<T>(url, postparams);
+    return this.http.post<T>(environment.apiUrl + url, postparams);
   }
 
-  get<T>(url: string, includeToken = true) {}
+  get<T>(url: string, includeToken = true) {
+    return this.http.get<T>(environment.apiUrl + url);
+  }
+
+  delete<T>(url: string, includeToken = true) {
+    return this.http.delete<T>(environment.apiUrl + url);
+  }
 
   commonHTTPHandler<T>(apiAction: Observable<T>) {
     this.commonObjects.apiCalls++;

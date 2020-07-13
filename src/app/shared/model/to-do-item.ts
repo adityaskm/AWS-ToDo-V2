@@ -1,5 +1,5 @@
 export class ToDoItem {
-  id = 0;
+  id = '';
   title = '';
   subtitle = '';
   status: ToDoItemStatus = ToDoItemStatus.open;

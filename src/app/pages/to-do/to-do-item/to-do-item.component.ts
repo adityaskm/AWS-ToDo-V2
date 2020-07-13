@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ToDoItem, ToDoItemStatus } from '../../../shared/model/to-do-item';
 import { MatRadioChange } from '@angular/material/radio';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: '[app-to-do-item]',
@@ -27,7 +28,7 @@ export class ToDoItemComponent implements OnInit {
   toDoItemTempTitle = '';
   toDoItemTempSubTitle = '';
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
@@ -48,18 +49,28 @@ export class ToDoItemComponent implements OnInit {
   saveToDo() {
     this.removeFocusFromInputs();
     this.toDoItem.editing = false;
-    if (this.toDoItemTempTitle.trim()) {
-      //  Save the Todo
-      this.toDoItem.title = this.toDoItemTempTitle;
+    const toDoItemTempTitle = this.toDoItemTempTitle.trim();
+    const toDoItemTempSubTitle = this.toDoItemTempSubTitle.trim();
+    if (toDoItemTempTitle || toDoItemTempSubTitle) {
+      if (toDoItemTempTitle) {
+        //  Save the Todo
+        this.toDoItem.title = toDoItemTempTitle;
+      } else {
+        setTimeout(() => {
+          this.toDoItemTempTitle = this.toDoItem.title;
+        }, 200);
+      }
+      if (toDoItemTempSubTitle) {
+        this.toDoItem.subtitle = toDoItemTempSubTitle;
+      } else {
+        setTimeout(() => {
+          this.toDoItemTempSubTitle = this.toDoItem.subtitle;
+        }, 200);
+      }
+      this.dataService.editItem(this.toDoItem);
     } else {
       setTimeout(() => {
         this.toDoItemTempTitle = this.toDoItem.title;
-      }, 200);
-    }
-    if (this.toDoItemTempSubTitle.trim()) {
-      this.toDoItem.subtitle = this.toDoItemTempSubTitle;
-    } else {
-      setTimeout(() => {
         this.toDoItemTempSubTitle = this.toDoItem.subtitle;
       }, 200);
     }

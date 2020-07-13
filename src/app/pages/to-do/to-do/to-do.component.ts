@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoItem } from '../../../shared/model/to-do-item';
 import { AuthService } from '../../../shared/services/auth.service';
+import { DataService } from '../../../shared/services/data.service';
 
 @Component({
   selector: 'app-to-do',
@@ -10,7 +11,10 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class ToDoComponent implements OnInit {
   todoList: ToDoItem[] = [new ToDoItem()];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,7 +24,10 @@ export class ToDoComponent implements OnInit {
 
   removeToDo(todoIndex: number) {
     if (this.todoList.length >= todoIndex) {
-      this.todoList.splice(todoIndex, 1);
+      const todo = this.todoList[todoIndex];
+      this.dataService
+        .deleteItem(todo)
+        .subscribe(() => this.todoList.splice(todoIndex, 1));
     }
     if (!this.todoList.length) {
       this.addToDo();
