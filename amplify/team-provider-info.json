@@ -10,6 +10,18 @@
             "StackName": "amplify-awstodov2-dev-165952",
             "StackId": "arn:aws:cloudformation:ap-south-1:251869914693:stack/amplify-awstodov2-dev-165952/2bd7ff40-c4fc-11ea-82e3-0a95c9550e3e",
             "AmplifyAppId": "d3c7rb4j5tes5c"
+        },
+        "categories": {
+            "function": {
+                "awstodov27fdd4a0bCustomMessage": {
+                    "REDIRECTURL": "/to-do",
+                    "EMAILSUBJECT": "Verify your Email for Awesome TOdo App",
+                    "EMAILMESSAGE": "Verify your Email for Awesome TOdo App"
+                }
+            },
+            "auth": {
+                "awstodov27fdd4a0b": {}
+            }
         }
     }
 }
