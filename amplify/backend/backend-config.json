@@ -6,7 +6,14 @@
 			"service": "Lambda"
 		}
 	},
-	"auth": {},
+	"auth": {
+		"awstodov2f68a48f7": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
 	"hosting": {
 		"amplifyhosting": {
 			"service": "amplifyhosting",
