@@ -8,7 +8,7 @@
         'to-do-item-action-complete-active': toDoItem.status === 2,
         'to-do-item-action-complete-inactive': toDoItem.status !== 2
       }"
-      (click)="toDoItem.status = 2"
+      (click)="setToDoItemComplete()"
     >
       done_outline
     </mat-icon>
@@ -20,7 +20,7 @@
         'to-do-item-action-inprogress-active': toDoItem.status === 1,
         'to-do-item-action-inprogress-inactive': toDoItem.status !== 1
       }"
-      (click)="toDoItem.status = 1"
+      (click)="setToDoInProgress()"
     >
       schedule
     </mat-icon>
@@ -35,7 +35,7 @@
       placeholder="What do you want to do?"
       [(ngModel)]="toDoItemTempTitle"
       (focus)="editToDoComponent(toDoTitleInput)"
-      (blur)="saveToDo()"
+      (blur)="saveEditToDo()"
     />
     <mat-icon
       class="float-right to-do-item-action to-do-item-action-delete"

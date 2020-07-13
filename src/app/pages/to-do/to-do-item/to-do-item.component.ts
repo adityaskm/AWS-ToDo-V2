@@ -46,33 +46,43 @@ export class ToDoItemComponent implements OnInit {
     }, 1);
   }
 
-  saveToDo() {
+  saveEditToDo() {
     this.removeFocusFromInputs();
     this.toDoItem.editing = false;
     const toDoItemTempTitle = this.toDoItemTempTitle.trim();
     const toDoItemTempSubTitle = this.toDoItemTempSubTitle.trim();
-    if (toDoItemTempTitle || toDoItemTempSubTitle) {
-      if (toDoItemTempTitle) {
-        //  Save the Todo
-        this.toDoItem.title = toDoItemTempTitle;
-      } else {
-        setTimeout(() => {
-          this.toDoItemTempTitle = this.toDoItem.title;
-        }, 200);
-      }
-      if (toDoItemTempSubTitle) {
-        this.toDoItem.subtitle = toDoItemTempSubTitle;
-      } else {
-        setTimeout(() => {
-          this.toDoItemTempSubTitle = this.toDoItem.subtitle;
-        }, 200);
-      }
-      this.dataService.editItem(this.toDoItem);
+
+    if (toDoItemTempTitle) {
+      //  Save the Todo
+      this.toDoItem.title = toDoItemTempTitle;
     } else {
       setTimeout(() => {
         this.toDoItemTempTitle = this.toDoItem.title;
+      }, 200);
+    }
+    if (toDoItemTempSubTitle) {
+      this.toDoItem.subtitle = toDoItemTempSubTitle;
+    } else {
+      setTimeout(() => {
         this.toDoItemTempSubTitle = this.toDoItem.subtitle;
       }, 200);
+    }
+    if (toDoItemTempTitle || toDoItemTempSubTitle) {
+      this.saveToDo();
+    }
+  }
+
+  saveToDo() {
+    this.toDoItem.id
+      ? this.dataService.editItem(this.toDoItem).subscribe(() => {})
+      : this.addToDo();
+  }
+
+  addToDo() {
+    if (this.toDoItem.title && this.toDoItem.subtitle) {
+      this.dataService
+        .addItem(this.toDoItem)
+        .subscribe((result) => (this.toDoItem.id = result.id));
     }
   }
 
@@ -86,10 +96,13 @@ export class ToDoItemComponent implements OnInit {
     this.toDoItemDelete.emit();
   }
 
-  setToDoItemComplete(event: MatRadioChange) {
-    console.log(event);
-    this.toDoItem.status = event.value
-      ? ToDoItemStatus.completed
-      : ToDoItemStatus.open;
+  setToDoItemComplete() {
+    this.toDoItem.status = ToDoItemStatus.completed;
+    this.saveToDo();
+  }
+
+  setToDoInProgress() {
+    this.toDoItem.status = ToDoItemStatus.inProgress;
+    this.saveToDo();
   }
 }
