@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AutoResizeModule } from '../../shared/directives/auto-resize/auto-resize.module';
 import { ClickOutsideModule } from '../../shared/directives/click-outside/click-outside.module';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 @NgModule({
   declarations: [ToDoComponent, ToDoItemComponent],
@@ -28,6 +29,7 @@ import { ClickOutsideModule } from '../../shared/directives/click-outside/click-
     MatFormFieldModule,
     AutoResizeModule,
     ClickOutsideModule,
+    AmplifyUIAngularModule,
   ],
 })
 export class ToDoModule {}
